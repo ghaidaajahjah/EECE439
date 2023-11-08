@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <style>
+        /* Custom styles for the edit contact template */
+        .edit-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .edit-heading {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 20%; /* Set the width to 100% for both input fields */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .save-button {
+            background-color: #007bff; /* Blue background for save button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .save-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .cancel-button {
+            background-color: #dc3545; /* Red background for cancel button */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cancel-button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+    </style>
+
+    <div class="edit-container">
+        <h2 class="edit-heading">Edit Contact</h2>
+        <form method="post" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save-button">Save</button>
+            <button type="button" class="cancel-button" onclick="window.location.href='{% url 'contact_list' %}'">Cancel</button>
+        </form>
+    </div>
+{% endblock %}

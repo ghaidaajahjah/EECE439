@@ -1,0 +1,87 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <style>
+        /* Custom styles for the contacts template */
+        .contacts-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .contacts-heading {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .new-contact-button {
+            background-color: #007bff; /* Blue background for New Contact button */
+            color: #fff;
+            padding: 2px 5px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .new-contact-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0; /* Light gray background for each contact item */
+            border-radius: 5px;
+        }
+        .edit-button {
+            background-color: #17a2b8; /* Teal background for Edit button */
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+        .delete-button {
+            background-color: #dc3545; /* Red background for Delete button */
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+    </style>
+    <header class="contacts-heading">
+        <h1>Contact List</h1>
+    </header>
+    <div class="contacts-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Profession</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr class="contact-item">
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.address }}</td>
+                    <td>{{ contact.profession }}</td>
+                    <td>{{ contact.tel_number }}</td>
+                    <td>{{ contact.email_address }}</td>
+                    <td>
+                        <a href="{% url 'contact_edit' contact.pk %}" class="edit-button">Edit</a>
+                        <a href="{% url 'contact_delete' contact.pk %}" class="delete-button">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'contact_new' %}" class="new-contact-button">Add New Contact</a>
+    </div>
+{% endblock %}
